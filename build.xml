@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="all" name="GameOfLife">
+
+	<target name="init" description="Initialize script.">
+            <property name="build.compiler" value="modern"/>
+            <property name="dest" value="build"/>
+            <property name="web" value="web"/>
+            <property name="dist" value="dist"/>
+	    <property name="src" value="src"/>
+	</target>
+
+	<target depends="init" name="debug" description="Compile for debugging.">
+		<javac debug="true" deprecation="false" srcdir="${src}" destdir="${dest}" target="1.1"/>
+	</target>
+
+	<target depends="init" name="compile" description="Compile for release.">
+		<javac debug="false" deprecation="false" srcdir="${src}" destdir="${dest}" optimize="true" target="1.1"/>
+	</target>
+
+	<target depends="init,compile" name="jar" description="Create applet jar file.">
+		<jar basedir="${dest}" compress="true" includes="**/GameOfLife*.class **/Shape*.class **/Cell*.class" jarfile="${web}/gameoflife.jar"/>
+	</target>
+
+	<target depends="init,compile" name="s-jar" description="Create standalone jar file.">
+		<jar basedir="${dest}" compress="true" includes="**/*" manifest="misc/MANIFEST.MF" jarfile="${dist}/GameOfLife.jar"/>
+	</target>
+
+	<target depends="init,compile" name="winexe" description="Create executable.">
+		<exec executable="C:\Program Files\Microsoft SDK for Java 4.0\Bin\jexegen.exe">
+			<arg line="/main:org.bitstorm.gameoflife.StandaloneGameOfLife /out:${dist}/GameOfLife.exe /base:${dest} /w /v /r *.*"/>
+		</exec>
+	</target>
+
+	<target depends="init,jar,s-jar" description="Build everything." name="all">
+		<echo message="Application ${ant.project.name} built."/>
+	</target>
+
+	<target depends="init" description="Clean all build products." name="clean">
+		<delete>
+			<fileset dir="build/org/bitstorm/gameoflife">
+				<include name="*.class"/>
+			</fileset>
+			<fileset dir="build/org/bitstorm/util">
+				<include name="*.class"/>
+			</fileset>
+		</delete>
+		<delete file="GameOfLife.jar"/>
+	</target>
+
+    <target name="javadoc" depends="init">
+        <javadoc	destdir="docs"
+        			access="private"
+        			source="1.4"
+        			use="true"
+        			notree="false"
+        			nonavbar="false"
+        			noindex="false"
+        			splitindex="true"
+        			author="true"
+        			version="true"
+        			nodeprecatedlist="false"
+        			nodeprecated="false"
+        			packagenames="org.bitstorm.gameoflife,org.bitstorm.util"
+        			sourcepath="${src}"
+        			classpath="."
+        			doctitle="Game of Life 1.5 API"
+        			header="Game of Life 1.5"
+        			bottom="&lt;p&gt;This API descibes the &lt;a href='http://www.bitstorm.org/gameoflife/' target='_top'&gt;Game of Life&lt;/a&gt; program, written by Edwin Martin. The &lt;a href='http://www.bitstorm.org/gameoflife/code/' target='_top'&gt;source code&lt;/a&gt; is available online too.&lt;/p&gt;&lt;p&gt;Copyright 1996-2004 &lt;a href='http://www.bitstorm.org/edwin/en/' target='_top'&gt;Edwin Martin&lt;/a&gt; &amp;lt;&lt;a href='mailto:edwin@bitstorm.org' target='_top'&gt;edwin@bitstorm.org&lt;/a&gt;&amp;gt;.&lt;/p&gt;"
+        />
+    </target>
+
+</project>
