@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="50.625" y="395.0">org.bitstorm.util.ImageComponent</node>
+    <node x="357.53661100803953" y="0.0">org.bitstorm.gameoflife.Shape</node>
+    <node x="248.10073051948046" y="120.0">org.bitstorm.gameoflife.Cell</node>
+    <node x="70.89224451144094" y="200.0">org.bitstorm.gameoflife.CellGridCanvas</node>
+    <node x="505.10073051948046" y="200.0">org.bitstorm.gameoflife.GameOfLifeControls</node>
+    <node x="235.18406385281378" y="200.0">org.bitstorm.gameoflife.GameOfLifeGrid</node>
+    <node x="0.0" y="0.0">org.bitstorm.gameoflife.ShapeException</node>
+    <node x="274.0" y="475.0">org.bitstorm.util.TextFileDialog</node>
+    <node x="333.6422445114409" y="320.0">org.bitstorm.gameoflife.GameOfLife</node>
+    <node x="349.10073051948046" y="120.0">org.bitstorm.gameoflife.ShapeCollection</node>
+    <node x="585.053125" y="0.0">org.bitstorm.gameoflife.GameOfLifeControlsEvent</node>
+    <node x="0.0" y="475.0">org.bitstorm.util.AboutDialog</node>
+    <node x="0.0" y="550.0">org.bitstorm.util.LineEnumerator</node>
+    <node x="136.0" y="475.0">org.bitstorm.util.AlertBox</node>
+    <node x="138.10073051948046" y="120.0">org.bitstorm.gameoflife.CellGrid</node>
+    <node x="599.5366110080395" y="120.0">org.bitstorm.gameoflife.GameOfLifeControlsListener</node>
+    <node x="291.0" y="395.0">org.bitstorm.util.EasyFile</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.bitstorm.gameoflife.GameOfLifeControls" target="org.bitstorm.gameoflife.GameOfLifeControlsListener">
+      <point x="62.39999999999998" y="-15.0" />
+      <point x="645.5007305194804" y="180.0" />
+      <point x="648.7866110080395" y="180.0" />
+      <point x="-49.25" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.gameoflife.GameOfLifeGrid" target="org.bitstorm.gameoflife.CellGrid">
+      <point x="-55.416666666666686" y="-15.0" />
+      <point x="246.2673971861471" y="170.0" />
+      <point x="213.10073051948046" y="170.0" />
+      <point x="30.0" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.gameoflife.CellGridCanvas" target="org.bitstorm.gameoflife.Shape">
+      <point x="-18.285714285714334" y="-15.0" />
+      <point x="116.60073051948046" y="60.0" />
+      <point x="361.58661100803954" y="60.0" />
+      <point x="-36.44999999999999" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.gameoflife.CellGridCanvas" target="org.bitstorm.gameoflife.CellGrid">
+      <point x="36.571428571428555" y="-15.0" />
+      <point x="171.4636730828695" y="180.0" />
+      <point x="183.10073051948046" y="180.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.gameoflife.GameOfLife" target="org.bitstorm.gameoflife.GameOfLifeControls">
+      <point x="20.181818181818187" y="-15.0" />
+      <point x="409.32406269325907" y="270.0" />
+      <point x="544.1007305194805" y="270.0" />
+      <point x="-39.0" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.util.AlertBox" target="org.bitstorm.util.ImageComponent">
+      <point x="-23.25" y="-15.0" />
+      <point x="159.25" y="450.0" />
+      <point x="141.25" y="450.0" />
+      <point x="18.125" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.gameoflife.ShapeCollection" target="org.bitstorm.gameoflife.Shape">
+      <point x="54.0" y="-15.0" />
+      <point x="470.60073051948046" y="80.0" />
+      <point x="418.28661100803953" y="80.0" />
+      <point x="20.25" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.gameoflife.ShapeCollection" target="org.bitstorm.gameoflife.ShapeException">
+      <point x="-54.0" y="-15.0" />
+      <point x="362.60073051948046" y="50.0" />
+      <point x="116.375" y="50.0" />
+      <point x="49.875" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.gameoflife.CellGridCanvas" target="org.bitstorm.gameoflife.ShapeException">
+      <point x="-54.85714285714289" y="-15.0" />
+      <point x="80.03510165429805" y="180.0" />
+      <point x="72.125" y="180.0" />
+      <point x="72.125" y="100.0" />
+      <point x="49.875" y="100.0" />
+      <point x="-16.625" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.gameoflife.GameOfLife" target="org.bitstorm.gameoflife.GameOfLifeControlsListener">
+      <point x="40.36363636363643" y="-15.0" />
+      <point x="429.5058808750773" y="290.0" />
+      <point x="747.2866110080395" y="290.0" />
+      <point x="49.25" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.gameoflife.CellGridCanvas" target="org.bitstorm.gameoflife.Cell">
+      <point x="54.85714285714286" y="-15.0" />
+      <point x="189.7493873685838" y="180.0" />
+      <point x="256.60073051948046" y="180.0" />
+      <point x="-25.5" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.gameoflife.GameOfLife" target="org.bitstorm.gameoflife.GameOfLifeGrid">
+      <point x="-10.090909090909065" y="-15.0" />
+      <point x="379.0513354205318" y="260.0" />
+      <point x="334.9340638528138" y="260.0" />
+      <point x="33.25" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.gameoflife.GameOfLife" target="org.bitstorm.gameoflife.ShapeException">
+      <point x="-50.45454545454544" y="-15.0" />
+      <point x="338.68769905689544" y="300.0" />
+      <point x="40.089285714285666" y="300.0" />
+      <point x="40.089285714285666" y="100.0" />
+      <point x="16.625" y="100.0" />
+      <point x="-49.875" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.util.TextFileDialog" target="org.bitstorm.util.EasyFile">
+      <point x="-30.75" y="-15.0" />
+      <point x="304.75" y="450.0" />
+      <point x="313.25" y="450.0" />
+      <point x="-22.25" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.gameoflife.GameOfLifeControls" target="org.bitstorm.gameoflife.ShapeCollection">
+      <point x="-62.39999999999998" y="-15.0" />
+      <point x="520.7007305194804" y="180.0" />
+      <point x="450.35073051948046" y="180.0" />
+      <point x="33.75" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.gameoflife.GameOfLifeControls" target="org.bitstorm.gameoflife.Shape">
+      <point x="-31.200000000000045" y="-15.0" />
+      <point x="551.9007305194805" y="180.0" />
+      <point x="562.0007305194804" y="180.0" />
+      <point x="562.0007305194804" y="60.0" />
+      <point x="434.48661100803946" y="60.0" />
+      <point x="36.44999999999993" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.util.AboutDialog" target="org.bitstorm.util.ImageComponent">
+      <point x="-29.0" y="-15.0" />
+      <point x="29.0" y="450.0" />
+      <point x="68.75" y="450.0" />
+      <point x="-54.375" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.gameoflife.GameOfLifeControls" target="org.bitstorm.gameoflife.GameOfLifeControlsEvent">
+      <point x="0.0" y="-15.0" />
+      <point x="583.1007305194805" y="180.0" />
+      <point x="578.0366110080395" y="180.0" />
+      <point x="578.0366110080395" y="90.0" />
+      <point x="608.178125" y="90.0" />
+      <point x="-69.375" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.gameoflife.GameOfLifeGrid" target="org.bitstorm.gameoflife.Shape">
+      <point x="55.416666666666686" y="-15.0" />
+      <point x="357.10073051948046" y="170.0" />
+      <point x="337.60073051948046" y="170.0" />
+      <point x="337.60073051948046" y="90.0" />
+      <point x="385.88661100803955" y="90.0" />
+      <point x="-12.149999999999977" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.gameoflife.GameOfLifeControlsListener" target="org.bitstorm.gameoflife.GameOfLifeControlsEvent">
+      <point x="0.0" y="-15.0" />
+      <point x="698.0366110080395" y="100.0" />
+      <point x="700.678125" y="100.0" />
+      <point x="23.125" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.gameoflife.GameOfLife" target="org.bitstorm.gameoflife.Shape">
+      <point x="10.090909090909179" y="-15.0" />
+      <point x="399.23315360235006" y="260.0" />
+      <point x="494.60073051948046" y="260.0" />
+      <point x="494.60073051948046" y="70.0" />
+      <point x="426.38661100803955" y="70.0" />
+      <point x="28.350000000000023" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.gameoflife.GameOfLifeGrid" target="org.bitstorm.gameoflife.Cell">
+      <point x="-33.25" y="-15.0" />
+      <point x="268.4340638528138" y="180.0" />
+      <point x="273.60073051948046" y="180.0" />
+      <point x="-8.5" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.gameoflife.GameOfLife" target="org.bitstorm.gameoflife.CellGridCanvas">
+      <point x="-30.272727272727195" y="-15.0" />
+      <point x="358.8695172387137" y="280.0" />
+      <point x="166.89224451144094" y="280.0" />
+      <point x="32.0" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.gameoflife.GameOfLife" target="org.bitstorm.gameoflife.ShapeCollection">
+      <point x="5.6843418860808015E-14" y="-15.0" />
+      <point x="389.14224451144094" y="250.0" />
+      <point x="382.85073051948046" y="250.0" />
+      <point x="-33.75" y="15.0" />
+    </edge>
+    <edge source="org.bitstorm.gameoflife.GameOfLife" target="org.bitstorm.gameoflife.GameOfLifeControlsEvent">
+      <point x="50.45454545454555" y="-15.0" />
+      <point x="439.59678996598643" y="300.0" />
+      <point x="807.0366110080395" y="300.0" />
+      <point x="807.0366110080395" y="100.0" />
+      <point x="746.928125" y="100.0" />
+      <point x="69.375" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="404.0" y="390.5" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
