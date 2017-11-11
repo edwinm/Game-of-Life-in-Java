@@ -18,7 +18,7 @@ import java.util.Hashtable;
  *
  * @author Edwin Martin
  */
-public abstract class CellGrid {
+public class CellGrid {
 	/**
 	 * Get status of cell (alive or dead).
 	 * @param col x-position
@@ -40,6 +40,7 @@ public abstract class CellGrid {
 	 * Every cell on the grid is a Cell object. This object can become quite large.
 	 */
 	protected Cell[][] grid;
+	protected GameRule rule;
 
 	/**
 	 * Contructs a GameOfLifeGrid.
@@ -47,7 +48,7 @@ public abstract class CellGrid {
 	 * @param cellCols number of columns
 	 * @param cellRows number of rows
 	 */
-	public CellGrid(int cellCols, int cellRows) {
+	public CellGrid(int cellCols, int cellRows, GameRule rule) {
 		this.cellCols = cellCols;
 		this.cellRows = cellRows;
 		currentShape = new Hashtable();
@@ -57,9 +58,65 @@ public abstract class CellGrid {
 		for ( int c=0; c<cellCols; c++)
 			for ( int r=0; r<cellRows; r++ )
 				grid[c][r] = new Cell( c, r );
+		this.rule = rule;
 	}
 
-	public abstract void next();
+	/**
+	 * Create next generation of shape.
+	 */
+	public synchronized void next() {
+		Cell cell;
+		int col, row;
+		int neighbours;
+		Enumeration enumi;
+
+		generations++;
+		nextShape.clear();
+
+		// Reset cells
+		enumi = currentShape.keys();
+		while ( enumi.hasMoreElements() ) {
+			cell = (Cell) enumi.nextElement();
+			cell.neighbour = 0;
+		}
+		// Add neighbours
+		// You can't walk through an hashtable and also add elements. Took me a couple of ours to figure out. Argh!
+		// That's why we have a hashNew hashtable.
+		enumi = currentShape.keys();
+		while ( enumi.hasMoreElements() ) {
+			cell = (Cell) enumi.nextElement();
+			col = cell.col;
+			row = cell.row;
+			addNeighbour( col-1, row-1 );
+			addNeighbour( col, row-1 );
+			addNeighbour( col+1, row-1 );
+			addNeighbour( col-1, row );
+			addNeighbour( col+1, row );
+			addNeighbour( col-1, row+1 );
+			addNeighbour( col, row+1 );
+			addNeighbour( col+1, row+1 );
+		}
+
+		// Bury the dead
+		// We are walking through an enum from we are also removing elements. Can be tricky.
+		enumi = currentShape.keys();
+		while ( enumi.hasMoreElements() ) {
+			cell = (Cell) enumi.nextElement();
+			// Here is the Game Of Life rule (1):
+			if ( this.rule.diesNext(cell)) {
+				currentShape.remove( cell );
+			}
+		}
+		// Bring out the new borns
+		enumi = nextShape.keys();
+		while ( enumi.hasMoreElements() ) {
+			cell = (Cell) enumi.nextElement();
+			// Here is the Game Of Life rule (2):
+			if ( this.rule.bornsNext(cell) ) {
+				setCell( cell.col, cell.row, true );
+			}
+		}
+	}
 
 	/**
 	 * Adds a new neighbour to a cell.
@@ -140,7 +197,7 @@ public abstract class CellGrid {
 		if ( cellCols==cellColsNew && cellRows==cellRowsNew )
 			return; // Not really a resize
 
-		// Create a new grid, reusing existing Cell's
+		// Create a new grid	, reusing existing Cell's
 		Cell[][] gridNew = new Cell[cellColsNew][cellRowsNew];
 		for ( int c=0; c<cellColsNew; c++)
 			for ( int r=0; r<cellRowsNew; r++ )
