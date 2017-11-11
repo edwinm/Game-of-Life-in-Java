@@ -23,7 +23,7 @@ import java.util.Vector;
  * Communicates via CellGrid interface.
  * @author Edwin Martin
  */
-public class CellGridCanvas extends Canvas {
+public class CellGridCanvas extends Canvas implements CellGridDrawer{
 	private boolean cellUnderMouse;
 	/**
 	 * Image for double buffering, to prevent flickering.
@@ -113,6 +113,7 @@ public class CellGridCanvas extends Canvas {
 		}
 			
 	}
+
 
 	/**
 	 * Remember state of cell for drawing.
