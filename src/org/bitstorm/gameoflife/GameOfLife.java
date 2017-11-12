@@ -280,7 +280,7 @@ public class GameOfLife extends Applet implements Runnable, GameOfLifeControlsLi
 			shape = ShapeCollection.getShapeByName( shapeName );
 			setShape( shape );
 		} catch (ShapeException e1) {
-			// Ignore. Not going to happen.
+			// Ignore. Not going to happen
 		}
 	}
 }
