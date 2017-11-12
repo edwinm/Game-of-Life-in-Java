@@ -7,14 +7,12 @@
  
 package org.bitstorm.gameoflife;
 
+import org.bitstorm.handler.*;
+
 import java.awt.Button;
 import java.awt.Choice;
 import java.awt.Label;
 import java.awt.Panel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.Enumeration;
 import java.util.Vector;
 
@@ -64,11 +62,7 @@ public class GameOfLifeControls extends Panel {
 
 		// when shape is selected
 		shapesChoice.addItemListener(
-			new ItemListener() {
-				public void itemStateChanged(ItemEvent e) {
-					shapeSelected( (String) e.getItem() );
-				}
-			}
+			new ShapesChoiceHandler(listeners)
 		);
 	
 		// pulldown menu with speeds
@@ -81,17 +75,7 @@ public class GameOfLifeControls extends Panel {
 	
 		// when item is selected
 		speedChoice.addItemListener(
-			new ItemListener() {
-				public void itemStateChanged(ItemEvent e) {
-					String arg = (String) e.getItem();
-					if (SLOW.equals(arg)) // slow
-						speedChanged(1000);
-					else if (FAST.equals(arg)) // fast
-						speedChanged(100);
-					else if (HYPER.equals(arg)) // hyperspeed
-						speedChanged(10);
-				}
-			}
+			new SpeedChoiceHandler(listeners)
 		);
 	
 		// pulldown menu with speeds
@@ -104,17 +88,7 @@ public class GameOfLifeControls extends Panel {
 	
 		// when item is selected
 		zoomChoice.addItemListener(
-			new ItemListener() {
-				public void itemStateChanged(ItemEvent e) {
-					String arg = (String) e.getItem();
-					if (BIG.equals(arg))
-						zoomChanged(SIZE_BIG);
-					else if (MEDIUM.equals(arg))
-						zoomChanged(SIZE_MEDIUM);
-					else if (SMALL.equals(arg))
-						zoomChanged(SIZE_SMALL);
-				}
-			}
+			new ZoomChoiceHandler(listeners)
 		);
 	
 		// number of generations
@@ -125,11 +99,7 @@ public class GameOfLifeControls extends Panel {
 			
 		// when start/stop button is clicked
 		startstopButton.addActionListener(
-			new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					startStopButtonClicked();
-				}
-			}
+			new StartStopButtonHandler(listeners)
 		);
 	
 		// next generation button
@@ -137,11 +107,7 @@ public class GameOfLifeControls extends Panel {
 			
 		// when next button is clicked
 		nextButton.addActionListener(
-			new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					nextButtonClicked();
-				}
-			}
+			new NextButtonHandler(listeners)
 		);
 	
 		// create panel with controls
@@ -195,56 +161,6 @@ public class GameOfLifeControls extends Panel {
 		startstopButton.setLabel(startLabelText);
 		nextButton.enable();
 		shapesChoice.enable();
-	}
-
-	/**
-	 * Called when the start/stop-button is clicked.
-	 * Notify event-listeners.
-	 */
-	public void startStopButtonClicked() {
-		GameOfLifeControlsEvent event = new GameOfLifeControlsEvent( this );
-		for ( Enumeration e = listeners.elements(); e.hasMoreElements(); )
-			((GameOfLifeControlsListener) e.nextElement()).startStopButtonClicked( event );
-	}
-
-	/**
-	 * Called when the next-button is clicked.
-	 * Notify event-listeners.
-	 */
-	public void nextButtonClicked() {
-		GameOfLifeControlsEvent event = new GameOfLifeControlsEvent( this );
-		for ( Enumeration e = listeners.elements(); e.hasMoreElements(); )
-			((GameOfLifeControlsListener) e.nextElement()).nextButtonClicked( event );
-	}
-
-	/**
-	 * Called when a new speed from the speed pull down is selected.
-	 * Notify event-listeners.
-	 */
-	public void speedChanged( int speed ) {
-		GameOfLifeControlsEvent event = GameOfLifeControlsEvent.getSpeedChangedEvent( this, speed );
-		for ( Enumeration e = listeners.elements(); e.hasMoreElements(); )
-			((GameOfLifeControlsListener) e.nextElement()).speedChanged( event );
-	}
-
-	/**
-	 * Called when a new zoom from the zoom pull down is selected.
-	 * Notify event-listeners.
-	 */
-	public void zoomChanged( int zoom ) {
-		GameOfLifeControlsEvent event = GameOfLifeControlsEvent.getZoomChangedEvent( this, zoom );
-		for ( Enumeration e = listeners.elements(); e.hasMoreElements(); )
-			((GameOfLifeControlsListener) e.nextElement()).zoomChanged( event );
-	}
-
-	/**
-	 * Called when a new shape from the shape pull down is selected.
-	 * Notify event-listeners.
-	 */
-	public void shapeSelected( String shapeName ) {
-		GameOfLifeControlsEvent event = GameOfLifeControlsEvent.getShapeSelectedEvent( this, shapeName );
-		for ( Enumeration e = listeners.elements(); e.hasMoreElements(); )
-			((GameOfLifeControlsListener) e.nextElement()).shapeSelected( event );
 	}
 	
 	/**

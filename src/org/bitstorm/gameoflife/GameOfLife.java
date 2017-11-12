@@ -24,7 +24,7 @@ import java.awt.GridBagLayout;
  * This is the heart of the program. It initializes everything en put it together.
  * @author Edwin Martin
  */
-public class GameOfLife extends Applet implements Runnable, GameOfLifeControlsListener {
+public class GameOfLife extends Applet implements Game, Runnable, GameOfLifeControlsListener {
 	protected CellGridCanvas gameOfLifeCanvas;
 	protected GameOfLifeGrid gameOfLifeGrid;
 	protected int cellSize;
@@ -38,6 +38,7 @@ public class GameOfLife extends Applet implements Runnable, GameOfLifeControlsLi
 	 * Initialize UI.
 	 * @see java.applet.Applet#init()
 	 */
+	@Override
 	public void init() {
 		getParams();
 
@@ -126,9 +127,11 @@ public class GameOfLife extends Applet implements Runnable, GameOfLifeControlsLi
 		}
 	}
 
+
 	/**
 	 * @see java.applet.Applet#stop()
 	 */
+	@Override
 	public void stop() {
 		controls.stop();
 		gameThread = null;
@@ -137,6 +140,7 @@ public class GameOfLife extends Applet implements Runnable, GameOfLifeControlsLi
 	/**
 	 * @see java.lang.Runnable#run()
 	 */
+	@Override
 	public synchronized void run() {
 		while (gameThread != null) {
 			nextGeneration();
@@ -151,14 +155,18 @@ public class GameOfLife extends Applet implements Runnable, GameOfLifeControlsLi
 	/**
 	 * Is the applet running?
 	 * @return true: applet is running
+	 * @see org.bitstorm.gameoflife.Game
 	 */
+	@Override
 	public boolean isRunning() {
 		return gameThread != null;
 	}
 	
 	/**
 	 * Go to the next generation.
+	 * @see org.bitstorm.gameoflife.Game
 	 */
+	@Override
 	public void nextGeneration() {
 		gameOfLifeGrid.next();
 		gameOfLifeCanvas.repaint();
@@ -209,6 +217,7 @@ public class GameOfLife extends Applet implements Runnable, GameOfLifeControlsLi
 	 * Set speed of new generations.
 	 * @param fps generations per second
 	 */
+	@Override
 	public void setSpeed( int fps ) {
 		genTime = fps;
 	}
@@ -217,6 +226,7 @@ public class GameOfLife extends Applet implements Runnable, GameOfLifeControlsLi
 	 * Sets cell size.
 	 * @param p size of cell in pixels
 	 */
+	@Override
 	public void setCellSize( int p ) {
 		cellSize = p;
 		gameOfLifeCanvas.setCellSize( cellSize );
@@ -226,6 +236,7 @@ public class GameOfLife extends Applet implements Runnable, GameOfLifeControlsLi
 	 * Gets cell size.
 	 * @return size of cell
 	 */
+	@Override
 	public int getCellSize() {
 		return cellSize;
 	}
@@ -234,6 +245,7 @@ public class GameOfLife extends Applet implements Runnable, GameOfLifeControlsLi
 	 * Shows an alert
 	 * @param s text to show
 	 */
+	@Override
 	public void alert( String s ) {
 		showStatus( s );
 	}
@@ -280,7 +292,7 @@ public class GameOfLife extends Applet implements Runnable, GameOfLifeControlsLi
 			shape = ShapeCollection.getShapeByName( shapeName );
 			setShape( shape );
 		} catch (ShapeException e1) {
-			// Ignore. Not going to happen.
+			// Ignore. Not going to happen
 		}
 	}
 }
