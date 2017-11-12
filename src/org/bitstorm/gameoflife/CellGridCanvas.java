@@ -5,18 +5,16 @@
 
 package org.bitstorm.gameoflife;
 
+import org.bitstorm.handler.CellGridCanvasComponentHandler;
+import org.bitstorm.handler.CellGridCanvasMouseHandler;
+import org.bitstorm.handler.CellGridCanvasMouseMotionHandler;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
 import java.util.Enumeration;
-import java.util.Vector;
 
 /**
  * Subclass of Canvas, which makes the cellgrid visible.
@@ -37,7 +35,6 @@ public class CellGridCanvas extends Canvas implements CellGridDrawer{
 	private Graphics offScreenGraphicsDrawed;
 	private int cellSize;
 	private CellGrid cellGrid;
-	private Vector listeners;
 	private int newCellSize;
 	private Shape newShape;
 
@@ -52,32 +49,10 @@ public class CellGridCanvas extends Canvas implements CellGridDrawer{
 
 		setBackground(new Color(0x999999));
 		
-		addMouseListener(
-			new MouseAdapter() {
-				public void mouseReleased(MouseEvent e) {
-					draw(e.getX(), e.getY());
-				}
-				public void mousePressed(MouseEvent e) {
-					saveCellUnderMouse(e.getX(), e.getY());
-				}
-			});
+		addMouseListener(new CellGridCanvasMouseHandler(this));
 
-		addMouseMotionListener(new MouseMotionAdapter() {
-			public void mouseDragged(MouseEvent e) {
-				draw(e.getX(), e.getY());
-			}
-		});
-		addComponentListener( 
-			new ComponentListener() {
-				public void componentResized(ComponentEvent e) {
-					resized();
-					repaint();
-				}
-				public void componentMoved(ComponentEvent e) {}
-				public void componentHidden(ComponentEvent e) {}
-				public void componentShown(ComponentEvent e) {}
-			}
-		);
+		addMouseMotionListener(new CellGridCanvasMouseMotionHandler(this));
+		addComponentListener(new CellGridCanvasComponentHandler(this));
 
 	}
 	
