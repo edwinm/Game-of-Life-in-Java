@@ -1,11 +1,24 @@
-group 'lemonapple'
+group 'org.bitstorm'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'application'
 
 sourceCompatibility = 1.7
-mainClassName = "kr.ac.cau.lemon.WebServer"
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir 'src'
+        }
+    }
+}
+
+mainClassName = "org.bitstorm.gameoflife.StandaloneGameOfLife"
+
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
