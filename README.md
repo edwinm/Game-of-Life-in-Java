@@ -19,10 +19,10 @@ So that the author can easily try our code when we create PR.(maybe)
 
 ```bash
 # clone this repo first
-git clone http://~
+git clone https://github.com/ZeroPage/Game-of-Life-in-Java
 
 # change your working directroy into repo.
-cd foo
+cd Game-of-Life-in-Java
 
 # We don't know how to use 'ant' build system, So here explains Gradle way only.
 
