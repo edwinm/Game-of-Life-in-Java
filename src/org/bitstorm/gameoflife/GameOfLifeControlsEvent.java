@@ -9,7 +9,7 @@ import java.awt.Event;
  * @see GameOfLifeControls
  * @author Edwin Martin
  */
-public class GameOfLifeControlsEvent extends Event {
+public class GameOfLifeControlsEvent{
 	private int speed;
 	private int zoom;
 	private String shapeName;
@@ -19,7 +19,7 @@ public class GameOfLifeControlsEvent extends Event {
 	 * @param source source of event
 	 */
 	public GameOfLifeControlsEvent(Object source) {
-		super(source, 0, null);
+		//super(source, 0, null);
 	}
 
 	/**

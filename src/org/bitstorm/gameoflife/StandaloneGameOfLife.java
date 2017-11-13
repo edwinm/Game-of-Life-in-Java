@@ -96,7 +96,7 @@ public class StandaloneGameOfLife extends GameOfLife {
 
 		// create GameOfLifeControls
 		controls = new GameOfLifeControls();
-		controls.addGameOfLifeControlsListener( this );
+		controls.addControlsListener( this );
 
 		// put it all together
         GridBagLayout gridbag = new GridBagLayout();

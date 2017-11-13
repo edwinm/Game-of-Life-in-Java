@@ -54,7 +54,7 @@ public class GameOfLife extends Applet implements Game, Runnable, GameOfLifeCont
 
 		// create GameOfLifeControls
 		controls = new GameOfLifeControls();
-		controls.addGameOfLifeControlsListener( this );
+		controls.addControlsListener( this );
 
 		// put it all together
         GridBagLayout gridbag = new GridBagLayout();
