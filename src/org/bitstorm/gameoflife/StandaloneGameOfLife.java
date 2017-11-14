@@ -81,7 +81,7 @@ public class StandaloneGameOfLife extends GameOfLife {
 
 		// TODO: casten naar interface
 		// create StandAloneGameOfLifeGrid
-		gameOfLifeGrid = new GameOfLifeGrid( cellCols, cellRows);
+		gameOfLifeGrid = new GameOfLifeGrid(new GameOfLifeRule(), cellCols, cellRows);
 		gridIO = new GameOfLifeGridIO( gameOfLifeGrid );
 
 		// create GameOfLifeCanvas
@@ -114,8 +114,8 @@ public class StandaloneGameOfLife extends GameOfLife {
         canvasContraints.gridx = GridBagConstraints.REMAINDER;
         canvasContraints.gridy = 1;
         controlsContraints.gridx = GridBagConstraints.REMAINDER;
-        gridbag.setConstraints(controls, controlsContraints);
-        add(controls);
+        gridbag.setConstraints((GameOfLifeControls)controls, controlsContraints);
+        add((GameOfLifeControls)controls);
 		setVisible(true);
 		validate();
 	}
