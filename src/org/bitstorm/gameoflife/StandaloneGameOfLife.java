@@ -394,9 +394,9 @@ public class StandaloneGameOfLife extends GameOfLife {
 
 			grid.clear();
 
-			Enumeration enum = new LineEnumerator( text );
-			while ( enum.hasMoreElements() ) {
-				String line = (String) enum.nextElement();
+			Enumeration enumi = new LineEnumerator( text );
+			while ( enumi.hasMoreElements() ) {
+				String line = (String) enumi.nextElement();
 				if ( line.startsWith("#") || line.startsWith("!") )
 					continue;
 				
