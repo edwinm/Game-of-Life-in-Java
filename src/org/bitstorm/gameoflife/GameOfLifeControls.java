@@ -20,7 +20,7 @@ import java.util.Vector;
  * GUI-controls of the Game of Life.
  * It contains controls like Shape, zoom and speed selector, next and start/stop-button.
  * It is a seperate class, so it can be replaced by another implementation for e.g. mobile phones or PDA's.
- * Communicates via the GameOfLifeControlsListener.
+ * Communicates via the GameControlsListener.
  * @author Edwin Martin
  *
  */
@@ -125,7 +125,7 @@ public class GameOfLifeControls extends Panel implements GameControls {
 	 * @param listener Listener object
 	 */
 	@Override
-	public void addControlsListener(GameOfLifeControlsListener listener ) {
+	public void addControlsListener(GameControlsListener listener ) {
 		listeners.addElement( listener );
 	}
 
@@ -134,7 +134,7 @@ public class GameOfLifeControls extends Panel implements GameControls {
 	 * @param listener Listener object
 	 */
 	@Override
-	public void removeControlsListener(GameOfLifeControlsListener listener ) {
+	public void removeControlsListener(GameControlsListener listener ) {
 		listeners.removeElement( listener );
 	}
 

@@ -15,7 +15,7 @@ import java.util.EventListener;
  * @see GameOfLifeControls
  * @author Edwin Martin
  */
-public interface GameOfLifeControlsListener extends EventListener {
+public interface GameControlsListener extends EventListener {
 	/**
 	 * The Start/Stop button is clicked.
 	 * @param e event object

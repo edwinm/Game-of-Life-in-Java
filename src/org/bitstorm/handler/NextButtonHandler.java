@@ -1,7 +1,7 @@
 package org.bitstorm.handler;
 
+import org.bitstorm.gameoflife.GameControlsListener;
 import org.bitstorm.gameoflife.GameOfLifeControlsEvent;
-import org.bitstorm.gameoflife.GameOfLifeControlsListener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,7 +27,7 @@ public class NextButtonHandler implements ActionListener{
 	private void nextButtonClicked() {
 		GameOfLifeControlsEvent event = new GameOfLifeControlsEvent( this );
 		for (Enumeration e = listeners.elements(); e.hasMoreElements(); ) {
-			((GameOfLifeControlsListener) e.nextElement()).nextButtonClicked(event);
+			((GameControlsListener) e.nextElement()).nextButtonClicked(event);
 		}
 	}
 }

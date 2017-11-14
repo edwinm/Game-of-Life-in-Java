@@ -2,7 +2,7 @@ package org.bitstorm.handler;
 
 import org.bitstorm.gameoflife.GameOfLifeControls;
 import org.bitstorm.gameoflife.GameOfLifeControlsEvent;
-import org.bitstorm.gameoflife.GameOfLifeControlsListener;
+import org.bitstorm.gameoflife.GameControlsListener;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -34,7 +34,7 @@ public class SpeedChoiceHandler implements ItemListener {
 	private void speedChanged( int speed ) {
 		GameOfLifeControlsEvent event = GameOfLifeControlsEvent.getSpeedChangedEvent( this, speed );
 		for (Enumeration e = listeners.elements(); e.hasMoreElements(); ) {
-			((GameOfLifeControlsListener) e.nextElement()).speedChanged(event);
+			((GameControlsListener) e.nextElement()).speedChanged(event);
 		}
 	}
 }
