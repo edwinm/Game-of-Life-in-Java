@@ -48,7 +48,7 @@ public class CellGrid {
 	 * @param cellCols number of columns
 	 * @param cellRows number of rows
 	 */
-	public CellGrid(int cellCols, int cellRows, GameRule rule) {
+	public CellGrid(int cellCols, int cellRows) {
 		this.cellCols = cellCols;
 		this.cellRows = cellRows;
 		currentShape = new Hashtable();
@@ -58,7 +58,6 @@ public class CellGrid {
 		for ( int c=0; c<cellCols; c++)
 			for ( int r=0; r<cellRows; r++ )
 				grid[c][r] = new Cell( c, r );
-		this.rule = rule;
 	}
 
 	/**

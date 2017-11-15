@@ -16,6 +16,7 @@ import java.util.Enumeration;
  */
 public class GameOfLifeGrid extends CellGrid {
 	public GameOfLifeGrid(GameRule rule, int cellCols, int cellRows) {
-		super(cellCols, cellRows, rule);
+		super(cellCols, cellRows);
+		this.rule = new GameOfLifeRule();
 	}
 }

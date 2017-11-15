@@ -251,10 +251,10 @@ public class GameOfLife extends Applet implements Game, Runnable, GameControlsLi
 	}
 
 	/** Callback from GameControlsListener
-	 * @see GameControlsListener#startStopButtonClicked(org.bitstorm.gameoflife.GameOfLifeControlsEvent)
+	 * @see GameControlsListener#startStopButtonClicked(org.bitstorm.gameoflife.GameControlsEvent)
 	 */
 	@Override
-	public void startStopButtonClicked( GameOfLifeControlsEvent e ) {
+	public void startStopButtonClicked( GameControlsEvent e ) {
 		if ( isRunning() ) {
 			stop();
 		} else {
@@ -263,35 +263,35 @@ public class GameOfLife extends Applet implements Game, Runnable, GameControlsLi
 	}
 
 	/** Callback from GameControlsListener
-	 * @see GameControlsListener#nextButtonClicked(org.bitstorm.gameoflife.GameOfLifeControlsEvent)
+	 * @see GameControlsListener#nextButtonClicked(org.bitstorm.gameoflife.GameControlsEvent)
 	 */
 	@Override
-	public void nextButtonClicked(GameOfLifeControlsEvent e) {
+	public void nextButtonClicked(GameControlsEvent e) {
 		nextGeneration();
 	}
 
 	/** Callback from GameControlsListener
-	 * @see GameControlsListener#speedChanged(org.bitstorm.gameoflife.GameOfLifeControlsEvent)
+	 * @see GameControlsListener#speedChanged(org.bitstorm.gameoflife.GameControlsEvent)
 	 */
 	@Override
-	public void speedChanged(GameOfLifeControlsEvent e) {
-		setSpeed( e.getSpeed() );
+	public void speedChanged(GameControlsEvent e) {
+		setSpeed( ((GameOfLifeControlsEvent)e).getSpeed() );
 	}
 
 	/** Callback from GameControlsListener
-	 * @see GameControlsListener#speedChanged(org.bitstorm.gameoflife.GameOfLifeControlsEvent)
+	 * @see GameControlsListener#speedChanged(org.bitstorm.gameoflife.GameControlsEvent)
 	 */
 	@Override
-	public void zoomChanged(GameOfLifeControlsEvent e) {
-		setCellSize( e.getZoom() );
+	public void zoomChanged(GameControlsEvent e) {
+		setCellSize( ((GameOfLifeControlsEvent)e).getZoom() );
 	}
 
 	/** Callback from GameControlsListener
-	 * @see GameControlsListener#shapeSelected(org.bitstorm.gameoflife.GameOfLifeControlsEvent)
+	 * @see GameControlsListener#shapeSelected(org.bitstorm.gameoflife.GameControlsEvent)
 	 */
 	@Override
-	public void shapeSelected(GameOfLifeControlsEvent e) {
-		String shapeName = (String) e.getShapeName();
+	public void shapeSelected(GameControlsEvent e) {
+		String shapeName = (String) (((GameOfLifeControlsEvent)e).getShapeName());
 		Shape shape;
 		try {
 			shape = ShapeCollection.getShapeByName( shapeName );
