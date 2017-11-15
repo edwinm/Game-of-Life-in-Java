@@ -24,14 +24,14 @@ import java.awt.GridBagLayout;
  * This is the heart of the program. It initializes everything en put it together.
  * @author Edwin Martin
  */
-public class GameOfLife extends Applet implements Game, Runnable, GameOfLifeControlsListener {
+public class GameOfLife extends Applet implements Game, Runnable, GameControlsListener {
 	protected CellGridCanvas gameOfLifeCanvas;
 	protected GameOfLifeGrid gameOfLifeGrid;
 	protected int cellSize;
 	protected int cellCols;
 	protected int cellRows;
 	protected int genTime;
-	protected GameOfLifeControls controls;
+	protected GameControls controls;
 	protected static Thread gameThread = null;
 
 	/**
@@ -46,7 +46,7 @@ public class GameOfLife extends Applet implements Game, Runnable, GameOfLifeCont
 		setBackground(new Color(0x999999));
 
 		// create gameOfLifeGrid
-		gameOfLifeGrid = new GameOfLifeGrid(cellCols, cellRows);
+		gameOfLifeGrid = new GameOfLifeGrid(new GameOfLifeRule(), cellCols, cellRows);
 		gameOfLifeGrid.clear();
 
 		// create GameOfLifeCanvas
@@ -54,7 +54,7 @@ public class GameOfLife extends Applet implements Game, Runnable, GameOfLifeCont
 
 		// create GameOfLifeControls
 		controls = new GameOfLifeControls();
-		controls.addGameOfLifeControlsListener( this );
+		controls.addControlsListener( this );
 
 		// put it all together
         GridBagLayout gridbag = new GridBagLayout();
@@ -74,8 +74,8 @@ public class GameOfLife extends Applet implements Game, Runnable, GameOfLifeCont
         canvasContraints.gridy = 1;
         canvasContraints.gridx = 0;
         controlsContraints.gridx = GridBagConstraints.REMAINDER;
-        gridbag.setConstraints(controls, controlsContraints);
-        add(controls);
+        gridbag.setConstraints((GameOfLifeControls)controls, controlsContraints);
+        add((GameOfLifeControls)controls);
 		
         try {
 			// Start with a shape (My girlfriend clicked "Start" on a blank screen and wondered why nothing happened).
@@ -250,10 +250,11 @@ public class GameOfLife extends Applet implements Game, Runnable, GameOfLifeCont
 		showStatus( s );
 	}
 
-	/** Callback from GameOfLifeControlsListener
-	 * @see org.bitstorm.gameoflife.GameOfLifeControlsListener#startStopButtonClicked(org.bitstorm.gameoflife.GameOfLifeControlsEvent)
+	/** Callback from GameControlsListener
+	 * @see GameControlsListener#startStopButtonClicked(org.bitstorm.gameoflife.GameControlsEvent)
 	 */
-	public void startStopButtonClicked( GameOfLifeControlsEvent e ) {
+	@Override
+	public void startStopButtonClicked( GameControlsEvent e ) {
 		if ( isRunning() ) {
 			stop();
 		} else {
@@ -261,32 +262,36 @@ public class GameOfLife extends Applet implements Game, Runnable, GameOfLifeCont
 		}
 	}
 
-	/** Callback from GameOfLifeControlsListener
-	 * @see org.bitstorm.gameoflife.GameOfLifeControlsListener#nextButtonClicked(org.bitstorm.gameoflife.GameOfLifeControlsEvent)
+	/** Callback from GameControlsListener
+	 * @see GameControlsListener#nextButtonClicked(org.bitstorm.gameoflife.GameControlsEvent)
 	 */
-	public void nextButtonClicked(GameOfLifeControlsEvent e) {
+	@Override
+	public void nextButtonClicked(GameControlsEvent e) {
 		nextGeneration();
 	}
 
-	/** Callback from GameOfLifeControlsListener
-	 * @see org.bitstorm.gameoflife.GameOfLifeControlsListener#speedChanged(org.bitstorm.gameoflife.GameOfLifeControlsEvent)
+	/** Callback from GameControlsListener
+	 * @see GameControlsListener#speedChanged(org.bitstorm.gameoflife.GameControlsEvent)
 	 */
-	public void speedChanged(GameOfLifeControlsEvent e) {
-		setSpeed( e.getSpeed() );
+	@Override
+	public void speedChanged(GameControlsEvent e) {
+		setSpeed( ((GameOfLifeControlsEvent)e).getSpeed() );
 	}
 
-	/** Callback from GameOfLifeControlsListener
-	 * @see org.bitstorm.gameoflife.GameOfLifeControlsListener#speedChanged(org.bitstorm.gameoflife.GameOfLifeControlsEvent)
+	/** Callback from GameControlsListener
+	 * @see GameControlsListener#speedChanged(org.bitstorm.gameoflife.GameControlsEvent)
 	 */
-	public void zoomChanged(GameOfLifeControlsEvent e) {
-		setCellSize( e.getZoom() );
+	@Override
+	public void zoomChanged(GameControlsEvent e) {
+		setCellSize( ((GameOfLifeControlsEvent)e).getZoom() );
 	}
 
-	/** Callback from GameOfLifeControlsListener
-	 * @see org.bitstorm.gameoflife.GameOfLifeControlsListener#shapeSelected(org.bitstorm.gameoflife.GameOfLifeControlsEvent)
+	/** Callback from GameControlsListener
+	 * @see GameControlsListener#shapeSelected(org.bitstorm.gameoflife.GameControlsEvent)
 	 */
-	public void shapeSelected(GameOfLifeControlsEvent e) {
-		String shapeName = (String) e.getShapeName();
+	@Override
+	public void shapeSelected(GameControlsEvent e) {
+		String shapeName = (String) (((GameOfLifeControlsEvent)e).getShapeName());
 		Shape shape;
 		try {
 			shape = ShapeCollection.getShapeByName( shapeName );

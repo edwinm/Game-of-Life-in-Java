@@ -1,7 +1,5 @@
 package org.bitstorm.gameoflife;
 
-import java.awt.Event;
-
 /**
  * Event class for GameOfLifeControls.
  * Can pass speed, cellSize and shapeName.
@@ -9,7 +7,7 @@ import java.awt.Event;
  * @see GameOfLifeControls
  * @author Edwin Martin
  */
-public class GameOfLifeControlsEvent extends Event {
+public class GameOfLifeControlsEvent implements GameControlsEvent {
 	private int speed;
 	private int zoom;
 	private String shapeName;
@@ -19,7 +17,7 @@ public class GameOfLifeControlsEvent extends Event {
 	 * @param source source of event
 	 */
 	public GameOfLifeControlsEvent(Object source) {
-		super(source, 0, null);
+		//super(source, 0, null);
 	}
 
 	/**

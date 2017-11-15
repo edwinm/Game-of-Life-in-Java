@@ -1,8 +1,8 @@
 package org.bitstorm.handler;
 
+import org.bitstorm.gameoflife.GameControlsListener;
 import org.bitstorm.gameoflife.GameOfLifeControls;
 import org.bitstorm.gameoflife.GameOfLifeControlsEvent;
-import org.bitstorm.gameoflife.GameOfLifeControlsListener;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -34,7 +34,7 @@ public class ZoomChoiceHandler implements ItemListener {
 	private void zoomChanged( int zoom ) {
 		GameOfLifeControlsEvent event = GameOfLifeControlsEvent.getZoomChangedEvent( this, zoom );
 		for (Enumeration e = listeners.elements(); e.hasMoreElements(); ) {
-			((GameOfLifeControlsListener) e.nextElement()).zoomChanged(event);
+			((GameControlsListener) e.nextElement()).zoomChanged(event);
 		}
 	}
 }

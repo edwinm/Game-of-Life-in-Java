@@ -1,7 +1,7 @@
 package org.bitstorm.handler;
 
 import org.bitstorm.gameoflife.GameOfLifeControlsEvent;
-import org.bitstorm.gameoflife.GameOfLifeControlsListener;
+import org.bitstorm.gameoflife.GameControlsListener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,7 +27,7 @@ public class StartStopButtonHandler implements ActionListener {
 	private void startStopButtonClicked() {
 		GameOfLifeControlsEvent event = new GameOfLifeControlsEvent( this );
 		for (Enumeration e = listeners.elements(); e.hasMoreElements(); ) {
-			((GameOfLifeControlsListener) e.nextElement()).startStopButtonClicked(event);
+			((GameControlsListener) e.nextElement()).startStopButtonClicked(event);
 		}
 	}
 }

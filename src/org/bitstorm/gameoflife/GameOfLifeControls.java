@@ -13,7 +13,6 @@ import java.awt.Button;
 import java.awt.Choice;
 import java.awt.Label;
 import java.awt.Panel;
-import java.util.Enumeration;
 import java.util.Vector;
 
 
@@ -21,11 +20,11 @@ import java.util.Vector;
  * GUI-controls of the Game of Life.
  * It contains controls like Shape, zoom and speed selector, next and start/stop-button.
  * It is a seperate class, so it can be replaced by another implementation for e.g. mobile phones or PDA's.
- * Communicates via the GameOfLifeControlsListener.
+ * Communicates via the GameControlsListener.
  * @author Edwin Martin
  *
  */
-public class GameOfLifeControls extends Panel {
+public class GameOfLifeControls extends Panel implements GameControls {
 	private Label genLabel;
 	private final String genLabelText = "Generations: ";
 	private final String nextLabelText = "Next";
@@ -125,7 +124,8 @@ public class GameOfLifeControls extends Panel {
 	 * Add listener for this control
 	 * @param listener Listener object
 	 */
-	public void addGameOfLifeControlsListener( GameOfLifeControlsListener listener ) {
+	@Override
+	public void addControlsListener(GameControlsListener listener ) {
 		listeners.addElement( listener );
 	}
 
@@ -133,7 +133,8 @@ public class GameOfLifeControls extends Panel {
 	 * Remove listener from this control
 	 * @param listener Listener object
 	 */
-	public void removeGameOfLifeControlsListener( GameOfLifeControlsListener listener ) {
+	@Override
+	public void removeControlsListener(GameControlsListener listener ) {
 		listeners.removeElement( listener );
 	}
 
@@ -141,13 +142,16 @@ public class GameOfLifeControls extends Panel {
 	 * Set the number of generations in the control bar.
 	 * @param generations number of generations
 	 */
+	@Override
 	public void setGeneration( int generations ) {
 		genLabel.setText(genLabelText + generations + "         ");
 	}
 	
+	
 	/**
 	 * Start-button is activated.
 	 */
+	@Override
 	public void start() {
 		startstopButton.setLabel(stopLabelText);
 		nextButton.disable();
@@ -157,6 +161,7 @@ public class GameOfLifeControls extends Panel {
 	/**
 	 * Stop-button is activated.
 	 */
+	@Override
 	public void stop() {
 		startstopButton.setLabel(startLabelText);
 		nextButton.enable();
@@ -167,6 +172,7 @@ public class GameOfLifeControls extends Panel {
 	 * Called when a new cell size from the zoom pull down is selected.
 	 * Notify event-listeners.
 	 */
+	@Override
 	public void setZoom( String n ) {
 		zoomChoice.select(n);
 	}
