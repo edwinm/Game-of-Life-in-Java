@@ -18,7 +18,7 @@ import java.util.Hashtable;
  *
  * @author Edwin Martin
  */
-public class CellGrid {
+public abstract class CellGrid {
 	/**
 	 * Get status of cell (alive or dead).
 	 * @param col x-position
@@ -40,7 +40,8 @@ public class CellGrid {
 	 * Every cell on the grid is a Cell object. This object can become quite large.
 	 */
 	protected Cell[][] grid;
-	protected GameRule rule;
+	protected GameRule rule = new NullRule();
+
 
 	/**
 	 * Contructs a GameOfLifeGrid.
