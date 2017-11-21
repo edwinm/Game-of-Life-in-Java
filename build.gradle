@@ -4,16 +4,13 @@ version '1.0-SNAPSHOT'
 apply plugin: 'java'
 apply plugin: 'application'
 
-sourceCompatibility = 1.7
-
 sourceSets {
     main {
-        java {
-            srcDir 'src'
-        }
-        resources {
-            srcDir 'src'
-        }
+        java.srcDir('src')
+        resources.srcDir('src')
+    }
+    test {
+        java.srcDir('test')
     }
 }
 
@@ -22,6 +19,7 @@ mainClassName = "org.bitstorm.gameoflife.StandaloneGameOfLife"
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+    sourceCompatibility = 1.7
 }
 
 jar {
