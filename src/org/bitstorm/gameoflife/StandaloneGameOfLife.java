@@ -336,7 +336,7 @@ public class StandaloneGameOfLife extends GameOfLife {
 		public void setShape( Shape shape ) {
 			int width, height;
 			Dimension shapeDim = new Dimension(shape.getWidth(), shape.getHeight());
-			Dimension gridDim = grid.getDimension();
+			Dimension gridDim = new Dimension(this.grid.getCellCols(),this.grid.getCellRows());
 			if ( shapeDim.width > gridDim.width || shapeDim.height > gridDim.height ) {
 				// Window has to be made larger
 				Toolkit toolkit = getToolkit();
@@ -433,7 +433,7 @@ public class StandaloneGameOfLife extends GameOfLife {
 		public void saveShape() {
 			int colEnd = 0;
 			int rowEnd = 0;
-			Dimension dim = grid.getDimension();
+			Dimension dim = new Dimension(grid.getCellCols(),grid.getCellRows());
 			int colStart = dim.width;
 			int rowStart = dim.height;
 

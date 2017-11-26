@@ -6,7 +6,7 @@
 
 package org.bitstorm.gameoflife;
 
-import java.awt.Dimension;
+
 //import java.util.Hashtable;
 
 /**
@@ -18,9 +18,5 @@ public class GameOfLifeGrid extends CellGrid {
     public GameOfLifeGrid(int cellCols, int cellRows) {
         super(cellCols, cellRows);
         this.rule = new GameOfLifeRule();
-    }
-
-    public Dimension getDimension(){
-        return new Dimension(this.getCellCols(), this.getCellRows());
     }
 }
