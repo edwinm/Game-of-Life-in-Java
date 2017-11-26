@@ -46,7 +46,7 @@ public class GameOfLife extends Applet implements Game, Runnable, GameControlsLi
 		setBackground(new Color(0x999999));
 
 		// create gameOfLifeGrid
-		gameOfLifeGrid = new GameOfLifeGrid(new GameOfLifeRule(), cellCols, cellRows);
+		gameOfLifeGrid = new GameOfLifeGrid(cellCols, cellRows);
 		gameOfLifeGrid.clear();
 
 		// create GameOfLifeCanvas

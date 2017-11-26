@@ -19,9 +19,4 @@ public class GameOfLifeGrid extends CellGrid {
         super(cellCols, cellRows);
         this.rule = new GameOfLifeRule();
     }
-
-    public GameOfLifeGrid(GameOfLifeRule gameOfLifeRule, int cellCols, int cellRows) {
-        super(cellCols, cellRows);
-        this.rule = gameOfLifeRule;
-    }
 }

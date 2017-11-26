@@ -81,7 +81,7 @@ public class StandaloneGameOfLife extends GameOfLife {
 
 		// TODO: casten naar interface
 		// create StandAloneGameOfLifeGrid
-		gameOfLifeGrid = new GameOfLifeGrid(new GameOfLifeRule(), cellCols, cellRows);
+		gameOfLifeGrid = new GameOfLifeGrid(cellCols, cellRows);
 		gridIO = new GameOfLifeGridIO( gameOfLifeGrid );
 
 		// create GameOfLifeCanvas
