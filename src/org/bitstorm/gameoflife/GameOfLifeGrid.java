@@ -20,11 +20,6 @@ public class GameOfLifeGrid extends CellGrid {
         this.rule = new GameOfLifeRule();
     }
 
-    public GameOfLifeGrid(GameOfLifeRule gameOfLifeRule, int cellCols, int cellRows) {
-        super(cellCols, cellRows);
-        this.rule = gameOfLifeRule;
-    }
-
     public Dimension getDimension(){
         return new Dimension(this.getCellCols(), this.getCellRows());
     }
