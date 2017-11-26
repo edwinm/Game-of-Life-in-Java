@@ -7,7 +7,6 @@
 
 package org.bitstorm.gameoflife;
 
-import java.awt.Dimension;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
@@ -26,8 +25,8 @@ public abstract class CellGrid {
 	 * @return living or not
 	 */
 
-	protected int cellRows;
-	protected int cellCols;
+	private int cellRows;
+	private int cellCols;
 	protected int generations;
 	protected static Shape[] shapes;
 	/**
@@ -236,8 +235,14 @@ public abstract class CellGrid {
 		cellCols = cellColsNew;
 		cellRows = cellRowsNew;
 	}
-	public Dimension getDimension(){
-		return new Dimension(this.cellCols, this.cellRows);
+
+
+	public int getCellRows(){
+		return this.cellRows;
+	}
+
+	public int getCellCols(){
+		return this.cellCols;
 	}
 
 	/**

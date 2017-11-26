@@ -38,6 +38,7 @@ public class CellGridCanvas extends Canvas implements CellGridDrawer{
 	private int newCellSize;
 	private Shape newShape;
 
+
 	/**
 	 * Constructs a CellGridCanvas.
 	 * @param cellGrid the GoL cellgrid
@@ -140,7 +141,7 @@ public class CellGridCanvas extends Canvas implements CellGridDrawer{
 	public void paint(Graphics g) {
 		// Draw grid on background image, which is faster
 		if (offScreenImageDrawed == null) {
-			Dimension dim = cellGrid.getDimension();
+			Dimension dim = this.getDimension();
 			Dimension d = getSize();
 			offScreenImageDrawed = createImage(d.width, d.height);
 			offScreenGraphicsDrawed = offScreenImageDrawed.getGraphics();
@@ -173,7 +174,7 @@ public class CellGridCanvas extends Canvas implements CellGridDrawer{
 	 * @see java.awt.Component#getPreferredSize()
 	 */
 	public Dimension getPreferredSize() {
-		Dimension dim = cellGrid.getDimension();
+		Dimension dim = this.getDimension();
 		return new Dimension( cellSize * dim.width,	cellSize * dim.height );
 	}
 
@@ -184,6 +185,11 @@ public class CellGridCanvas extends Canvas implements CellGridDrawer{
 	public Dimension getMinimumSize() {
 		return new Dimension( cellSize,	cellSize );
 	}
+
+	public Dimension getDimension(){
+		return new Dimension(this.cellGrid.getCellCols(),this.cellGrid.getCellRows());
+	}
+
 	
 	/**
 	 * Settings to appy after a window-resize.
@@ -213,7 +219,7 @@ public class CellGridCanvas extends Canvas implements CellGridDrawer{
 		// get shape properties
 		//shapeGrid = shape.getShape();
 		dimShape =  shape.getDimension();
-		dimGrid =  cellGrid.getDimension();
+		dimGrid =  this.getDimension();
 
 		if (dimShape.width > dimGrid.width || dimShape.height > dimGrid.height)
 			throw new ShapeException( "Shape doesn't fit on canvas (grid: "+dimGrid.width+"x"+dimGrid.height+", shape: "+dimShape.width+"x"+dimShape.height+")"); // shape doesn't fit on canvas
