@@ -335,7 +335,7 @@ public class StandaloneGameOfLife extends GameOfLife {
 		 */
 		public void setShape( Shape shape ) {
 			int width, height;
-			Dimension shapeDim = shape.getDimension();
+			Dimension shapeDim = new Dimension(shape.getWidth(), shape.getHeight());
 			Dimension gridDim = grid.getDimension();
 			if ( shapeDim.width > gridDim.width || shapeDim.height > gridDim.height ) {
 				// Window has to be made larger

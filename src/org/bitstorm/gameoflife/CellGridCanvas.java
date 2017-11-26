@@ -218,7 +218,7 @@ public class CellGridCanvas extends Canvas implements CellGridDrawer{
 
 		// get shape properties
 		//shapeGrid = shape.getShape();
-		dimShape =  shape.getDimension();
+		dimShape =  new Dimension(shape.getWidth(), shape.getHeight());
 		dimGrid =  this.getDimension();
 
 		if (dimShape.width > dimGrid.width || dimShape.height > dimGrid.height)
