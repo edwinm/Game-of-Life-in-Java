@@ -14,6 +14,17 @@
 
 package org.bitstorm.gameoflife;
 
+import org.bitstorm.gameoflife.cells.GameOfLifeGrid;
+import org.bitstorm.gameoflife.cells.Shape;
+import org.bitstorm.gameoflife.cells.ShapeCollection;
+import org.bitstorm.gameoflife.cells.ShapeException;
+import org.bitstorm.gameoflife.ui.CellGameUserControls;
+import org.bitstorm.gameoflife.ui.CellGridCanvas;
+import org.bitstorm.gameoflife.ui.GameOfLifeUserControls;
+import org.bitstorm.gameoflife.uicontrol.CellGameUserControlsEvent;
+import org.bitstorm.gameoflife.uicontrol.CellGameUserControlsListener;
+import org.bitstorm.gameoflife.uicontrol.GameOfLifeUserControlsEvent;
+
 import java.applet.Applet;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -24,14 +35,14 @@ import java.awt.GridBagLayout;
  * This is the heart of the program. It initializes everything en put it together.
  * @author Edwin Martin
  */
-public class GameOfLife extends Applet implements Game, Runnable, GameControlsListener {
+public class GameOfLife extends Applet implements CellGame, Runnable{
 	protected CellGridCanvas gameOfLifeCanvas;
 	protected GameOfLifeGrid gameOfLifeGrid;
 	protected int cellSize;
 	protected int cellCols;
 	protected int cellRows;
 	protected int genTime;
-	protected GameControls controls;
+	protected CellGameUserControls controls;
 	protected static Thread gameThread = null;
 
 	/**
@@ -53,7 +64,7 @@ public class GameOfLife extends Applet implements Game, Runnable, GameControlsLi
 		gameOfLifeCanvas = new CellGridCanvas(gameOfLifeGrid, cellSize);
 
 		// create GameOfLifeControls
-		controls = new GameOfLifeControls();
+		controls = new GameOfLifeUserControls();
 		controls.addControlsListener( this );
 
 		// put it all together
@@ -74,8 +85,8 @@ public class GameOfLife extends Applet implements Game, Runnable, GameControlsLi
         canvasContraints.gridy = 1;
         canvasContraints.gridx = 0;
         controlsContraints.gridx = GridBagConstraints.REMAINDER;
-        gridbag.setConstraints((GameOfLifeControls)controls, controlsContraints);
-        add((GameOfLifeControls)controls);
+        gridbag.setConstraints((GameOfLifeUserControls)controls, controlsContraints);
+        add((GameOfLifeUserControls)controls);
 		
         try {
 			// Start with a shape (My girlfriend clicked "Start" on a blank screen and wondered why nothing happened).
@@ -155,7 +166,7 @@ public class GameOfLife extends Applet implements Game, Runnable, GameControlsLi
 	/**
 	 * Is the applet running?
 	 * @return true: applet is running
-	 * @see org.bitstorm.gameoflife.Game
+	 * @see CellGame
 	 */
 	@Override
 	public boolean isRunning() {
@@ -164,7 +175,7 @@ public class GameOfLife extends Applet implements Game, Runnable, GameControlsLi
 	
 	/**
 	 * Go to the next generation.
-	 * @see org.bitstorm.gameoflife.Game
+	 * @see CellGame
 	 */
 	@Override
 	public void nextGeneration() {
@@ -251,10 +262,10 @@ public class GameOfLife extends Applet implements Game, Runnable, GameControlsLi
 	}
 
 	/** Callback from GameControlsListener
-	 * @see GameControlsListener#startStopButtonClicked(org.bitstorm.gameoflife.GameControlsEvent)
+	 * @see CellGameUserControlsListener#startStopButtonClicked(CellGameUserControlsEvent)
 	 */
 	@Override
-	public void startStopButtonClicked( GameControlsEvent e ) {
+	public void startStopButtonClicked( CellGameUserControlsEvent e ) {
 		if ( isRunning() ) {
 			stop();
 		} else {
@@ -263,35 +274,35 @@ public class GameOfLife extends Applet implements Game, Runnable, GameControlsLi
 	}
 
 	/** Callback from GameControlsListener
-	 * @see GameControlsListener#nextButtonClicked(org.bitstorm.gameoflife.GameControlsEvent)
+	 * @see CellGameUserControlsListener#nextButtonClicked(CellGameUserControlsEvent)
 	 */
 	@Override
-	public void nextButtonClicked(GameControlsEvent e) {
+	public void nextButtonClicked(CellGameUserControlsEvent e) {
 		nextGeneration();
 	}
 
 	/** Callback from GameControlsListener
-	 * @see GameControlsListener#speedChanged(org.bitstorm.gameoflife.GameControlsEvent)
+	 * @see CellGameUserControlsListener#speedChanged(CellGameUserControlsEvent)
 	 */
 	@Override
-	public void speedChanged(GameControlsEvent e) {
-		setSpeed( ((GameOfLifeControlsEvent)e).getSpeed() );
+	public void speedChanged(CellGameUserControlsEvent e) {
+		setSpeed( ((GameOfLifeUserControlsEvent)e).getSpeed() );
 	}
 
 	/** Callback from GameControlsListener
-	 * @see GameControlsListener#speedChanged(org.bitstorm.gameoflife.GameControlsEvent)
+	 * @see CellGameUserControlsListener#speedChanged(CellGameUserControlsEvent)
 	 */
 	@Override
-	public void zoomChanged(GameControlsEvent e) {
-		setCellSize( ((GameOfLifeControlsEvent)e).getZoom() );
+	public void zoomChanged(CellGameUserControlsEvent e) {
+		setCellSize( ((GameOfLifeUserControlsEvent)e).getZoom() );
 	}
 
 	/** Callback from GameControlsListener
-	 * @see GameControlsListener#shapeSelected(org.bitstorm.gameoflife.GameControlsEvent)
+	 * @see CellGameUserControlsListener#shapeSelected(CellGameUserControlsEvent)
 	 */
 	@Override
-	public void shapeSelected(GameControlsEvent e) {
-		String shapeName = (String) (((GameOfLifeControlsEvent)e).getShapeName());
+	public void shapeSelected(CellGameUserControlsEvent e) {
+		String shapeName = (String) (((GameOfLifeUserControlsEvent)e).getShapeName());
 		Shape shape;
 		try {
 			shape = ShapeCollection.getShapeByName( shapeName );

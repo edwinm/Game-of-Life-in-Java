@@ -3,11 +3,15 @@
  * @author Edwin Martin
  */
 
-package org.bitstorm.gameoflife;
+package org.bitstorm.gameoflife.ui;
 
-import org.bitstorm.handler.CellGridCanvasComponentHandler;
-import org.bitstorm.handler.CellGridCanvasMouseHandler;
-import org.bitstorm.handler.CellGridCanvasMouseMotionHandler;
+import org.bitstorm.gameoflife.cells.Cell;
+import org.bitstorm.gameoflife.cells.CellGrid;
+import org.bitstorm.gameoflife.cells.Shape;
+import org.bitstorm.gameoflife.cells.ShapeException;
+import org.bitstorm.gameoflife.eventhandler.CellGridCanvasComponentHandler;
+import org.bitstorm.gameoflife.eventhandler.CellGridCanvasMouseHandler;
+import org.bitstorm.gameoflife.eventhandler.CellGridCanvasMouseMotionHandler;
 
 import java.awt.Canvas;
 import java.awt.Color;

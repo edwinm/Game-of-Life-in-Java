@@ -1,4 +1,7 @@
-package org.bitstorm.gameoflife;
+package org.bitstorm.gameoflife.ui;
+
+import org.bitstorm.gameoflife.cells.Shape;
+import org.bitstorm.gameoflife.cells.ShapeException;
 
 public interface CellGridDrawer {
     void setCellSize(int cellSize);

@@ -4,7 +4,9 @@
  * TODO To change the template for this generated file go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-package org.bitstorm.gameoflife;
+package org.bitstorm.gameoflife.uicontrol;
+
+import org.bitstorm.gameoflife.ui.GameOfLifeUserControls;
 
 import java.util.EventListener;
 
@@ -12,37 +14,37 @@ import java.util.EventListener;
  * Listener interface for GameOfLifeControls.
  * The idea behind this interface is that the controls can be replaced by something else for
  * e.g. smart phones and PDA's.
- * @see GameOfLifeControls
+ * @see GameOfLifeUserControls
  * @author Edwin Martin
  */
-public interface GameControlsListener extends EventListener {
+public interface CellGameUserControlsListener extends EventListener {
 	/**
 	 * The Start/Stop button is clicked.
 	 * @param e event object
 	 */
-	public void startStopButtonClicked( GameControlsEvent e );
+	public void startStopButtonClicked( CellGameUserControlsEvent e );
 
 	/**
 	 * The Next button is clicked.
 	 * @param e event object
 	 */
-	public void nextButtonClicked( GameControlsEvent e );
+	public void nextButtonClicked( CellGameUserControlsEvent e );
 
 	/**
 	 * A new speed is selected.
 	 * @param e event object
 	 */
-	public void speedChanged( GameControlsEvent e );
+	public void speedChanged( CellGameUserControlsEvent e );
 
 	/**
 	 * A new cell size is selected.
 	 * @param e event object
 	 */
-	public void zoomChanged( GameControlsEvent e );
+	public void zoomChanged( CellGameUserControlsEvent e );
 
 	/**
 	 * A new shape is selected.
 	 * @param e event object
 	 */
-	public void shapeSelected( GameControlsEvent e );
+	public void shapeSelected( CellGameUserControlsEvent e );
 }

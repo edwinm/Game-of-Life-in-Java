@@ -1,8 +1,8 @@
-package org.bitstorm.handler;
+package org.bitstorm.gameoflife.eventhandler;
 
-import org.bitstorm.gameoflife.GameOfLifeControls;
-import org.bitstorm.gameoflife.GameOfLifeControlsEvent;
-import org.bitstorm.gameoflife.GameControlsListener;
+import org.bitstorm.gameoflife.ui.GameOfLifeUserControls;
+import org.bitstorm.gameoflife.uicontrol.GameOfLifeUserControlsEvent;
+import org.bitstorm.gameoflife.uicontrol.CellGameUserControlsListener;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -19,11 +19,11 @@ public class SpeedChoiceHandler implements ItemListener {
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		String arg = (String) e.getItem();
-		if (GameOfLifeControls.SLOW.equals(arg)) // slow
+		if (GameOfLifeUserControls.SLOW.equals(arg)) // slow
 			speedChanged(1000);
-		else if (GameOfLifeControls.FAST.equals(arg)) // fast
+		else if (GameOfLifeUserControls.FAST.equals(arg)) // fast
 			speedChanged(100);
-		else if (GameOfLifeControls.HYPER.equals(arg)) // hyperspeed
+		else if (GameOfLifeUserControls.HYPER.equals(arg)) // hyperspeed
 			speedChanged(10);
 	}
 	
@@ -32,9 +32,9 @@ public class SpeedChoiceHandler implements ItemListener {
 	 * Notify event-listeners.
 	 */
 	private void speedChanged( int speed ) {
-		GameOfLifeControlsEvent event = GameOfLifeControlsEvent.getSpeedChangedEvent( this, speed );
+		GameOfLifeUserControlsEvent event = GameOfLifeUserControlsEvent.getSpeedChangedEvent( this, speed );
 		for (Enumeration e = listeners.elements(); e.hasMoreElements(); ) {
-			((GameControlsListener) e.nextElement()).speedChanged(event);
+			((CellGameUserControlsListener) e.nextElement()).speedChanged(event);
 		}
 	}
 }

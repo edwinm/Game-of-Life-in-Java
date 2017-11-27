@@ -1,6 +1,6 @@
-package org.bitstorm.gameoflife;
+package org.bitstorm.gameoflife.cells;
 
-public class NullRule implements GameRule{
+public class NullRule implements CellGameRule {
 
     @Override
     public boolean diesNext(Cell c) {

@@ -40,6 +40,12 @@ import java.util.Enumeration;
 import java.util.Properties;
 import java.util.Vector;
 
+import org.bitstorm.gameoflife.cells.GameOfLifeGrid;
+import org.bitstorm.gameoflife.cells.Shape;
+import org.bitstorm.gameoflife.cells.ShapeCollection;
+import org.bitstorm.gameoflife.cells.ShapeException;
+import org.bitstorm.gameoflife.ui.CellGridCanvas;
+import org.bitstorm.gameoflife.ui.GameOfLifeUserControls;
 import org.bitstorm.util.AboutDialog;
 import org.bitstorm.util.AlertBox;
 import org.bitstorm.util.EasyFile;
@@ -95,7 +101,7 @@ public class StandaloneGameOfLife extends GameOfLife {
 		}
 
 		// create GameOfLifeControls
-		controls = new GameOfLifeControls();
+		controls = new GameOfLifeUserControls();
 		controls.addControlsListener( this );
 
 		// put it all together
@@ -114,8 +120,8 @@ public class StandaloneGameOfLife extends GameOfLife {
         canvasContraints.gridx = GridBagConstraints.REMAINDER;
         canvasContraints.gridy = 1;
         controlsContraints.gridx = GridBagConstraints.REMAINDER;
-        gridbag.setConstraints((GameOfLifeControls)controls, controlsContraints);
-        add((GameOfLifeControls)controls);
+        gridbag.setConstraints((GameOfLifeUserControls)controls, controlsContraints);
+        add((GameOfLifeUserControls)controls);
 		setVisible(true);
 		validate();
 	}
@@ -350,14 +356,14 @@ public class StandaloneGameOfLife extends GameOfLife {
 				if ( width > screenDim.width || height > screenDim.height ) {
 					// With current cellSize, it doesn't fit on the screen
 					// GameOfLifeControls.SIZE_SMALL corresponds with GameOfLifeControls.SMALL
-					int newCellSize = GameOfLifeControls.SIZE_SMALL;
+					int newCellSize = GameOfLifeUserControls.SIZE_SMALL;
 					width = frameDim.width + newCellSize*shapeDim.width - cellSize*gridDim.width;
 					height = frameDim.height + newCellSize*shapeDim.height - cellSize*gridDim.height;
 					// a little kludge to prevent de window from resizing twice
 					// setNewCellSize only has effect at the next resize
 					gameOfLifeCanvas.setAfterWindowResize( shape, newCellSize );
 					// The UI has to be adjusted, too
-					controls.setZoom( GameOfLifeControls.SMALL );
+					controls.setZoom( GameOfLifeUserControls.SMALL );
 				} else {
 					// Now resize the window (and optionally set the new cellSize)
 					gameOfLifeCanvas.setAfterWindowResize( shape, cellSize );

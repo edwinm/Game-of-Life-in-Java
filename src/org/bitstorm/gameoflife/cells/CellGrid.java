@@ -5,7 +5,7 @@
  * @author Edwin Martin
  */
 
-package org.bitstorm.gameoflife;
+package org.bitstorm.gameoflife.cells;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -39,7 +39,7 @@ public abstract class CellGrid {
 	 * Every cell on the grid is a Cell object. This object can become quite large.
 	 */
 	protected Cell[][] grid;
-	protected GameRule rule = new NullRule();
+	protected CellGameRule rule = new NullRule();
 
 
 	/**
@@ -190,7 +190,7 @@ public abstract class CellGrid {
 
 	/**
 	 * Resize grid. Reuse existing cells.
-	 * @see org.bitstorm.gameoflife.CellGrid#resize(int, int)
+	 * @see CellGrid#resize(int, int)
 	 */
 	public synchronized void resize(int cellColsNew, int cellRowsNew) {
 		if ( cellCols==cellColsNew && cellRows==cellRowsNew )

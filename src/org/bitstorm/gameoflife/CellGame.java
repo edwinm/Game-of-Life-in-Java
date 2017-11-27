@@ -1,6 +1,9 @@
 package org.bitstorm.gameoflife;
 
-public interface Game {
+import org.bitstorm.gameoflife.cells.Shape;
+import org.bitstorm.gameoflife.uicontrol.CellGameUserControlsListener;
+
+public interface CellGame extends CellGameUserControlsListener {
     void init();
     void start();
     void stop();
