@@ -12,7 +12,6 @@ public interface CellGame extends CellGameUserControlsListener {
     void nextGeneration();
     void setSpeed(int fps);
     void setShape(Shape shape);
-
     void setCellSize(int p);
     int getCellSize();
     void alert(String s);

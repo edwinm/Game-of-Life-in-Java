@@ -8,4 +8,5 @@ public interface CellGridDrawer {
     void resized();
     void draw(int x, int y);
     void setShape (Shape shape) throws ShapeException;
+    void saveCellUnderMouse(int x, int y);
 }

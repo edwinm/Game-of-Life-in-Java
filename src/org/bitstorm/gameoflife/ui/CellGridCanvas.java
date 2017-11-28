@@ -101,6 +101,7 @@ public class CellGridCanvas extends Canvas implements CellGridDrawer{
 	 * @param x x-coordinate
 	 * @param y y-coordinate
 	 */
+	@Override
 	public void saveCellUnderMouse(int x, int y) {
 		try {
 			cellUnderMouse = cellGrid.getCell(x / cellSize, y / cellSize);
@@ -115,6 +116,7 @@ public class CellGridCanvas extends Canvas implements CellGridDrawer{
 	 * @param x x-coordinate
 	 * @param y y-coordinate
 	 */
+	@Override
 	public void draw(int x, int y) {
 		try {
 			cellGrid.setCell(x / cellSize, y / cellSize, !cellUnderMouse );
