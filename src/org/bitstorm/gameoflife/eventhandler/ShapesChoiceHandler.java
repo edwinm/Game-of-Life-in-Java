@@ -1,7 +1,7 @@
-package org.bitstorm.handler;
+package org.bitstorm.gameoflife.eventhandler;
 
-import org.bitstorm.gameoflife.GameControlsListener;
-import org.bitstorm.gameoflife.GameOfLifeControlsEvent;
+import org.bitstorm.gameoflife.uicontrol.CellGameUserControlsListener;
+import org.bitstorm.gameoflife.uicontrol.GameOfLifeUserControlsEvent;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -25,9 +25,9 @@ public class ShapesChoiceHandler implements ItemListener{
 	 * Notify event-listeners.
 	 */
 	private void shapeSelected( String shapeName ) {
-		GameOfLifeControlsEvent event = GameOfLifeControlsEvent.getShapeSelectedEvent( this, shapeName );
+		GameOfLifeUserControlsEvent event = GameOfLifeUserControlsEvent.getShapeSelectedEvent( this, shapeName );
 		for (Enumeration e = listeners.elements(); e.hasMoreElements(); ){
-			((GameControlsListener) e.nextElement()).shapeSelected( event );
+			((CellGameUserControlsListener) e.nextElement()).shapeSelected( event );
 		}
 	}
 }

@@ -3,7 +3,7 @@
  * @author Edwin Martin
  */
 
-package org.bitstorm.gameoflife;
+package org.bitstorm.gameoflife.cells;
 
 /**
  * Contains some nice Game Of Life shapes.

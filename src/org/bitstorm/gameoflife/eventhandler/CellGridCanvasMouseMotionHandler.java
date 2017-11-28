@@ -1,6 +1,6 @@
-package org.bitstorm.handler;
+package org.bitstorm.gameoflife.eventhandler;
 
-import org.bitstorm.gameoflife.CellGridCanvas;
+import org.bitstorm.gameoflife.ui.CellGridCanvas;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;

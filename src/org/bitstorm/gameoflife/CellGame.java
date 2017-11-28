@@ -1,6 +1,9 @@
 package org.bitstorm.gameoflife;
 
-public interface Game {
+import org.bitstorm.gameoflife.cells.Shape;
+import org.bitstorm.gameoflife.uicontrol.CellGameUserControlsListener;
+
+public interface CellGame extends CellGameUserControlsListener {
     void init();
     void start();
     void stop();
@@ -9,7 +12,6 @@ public interface Game {
     void nextGeneration();
     void setSpeed(int fps);
     void setShape(Shape shape);
-
     void setCellSize(int p);
     int getCellSize();
     void alert(String s);

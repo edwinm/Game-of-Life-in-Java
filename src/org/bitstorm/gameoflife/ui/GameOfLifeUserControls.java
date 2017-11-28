@@ -5,9 +5,12 @@
  * @author Edwin Martin
  */
  
-package org.bitstorm.gameoflife;
+package org.bitstorm.gameoflife.ui;
 
-import org.bitstorm.handler.*;
+import org.bitstorm.gameoflife.uicontrol.CellGameUserControlsListener;
+import org.bitstorm.gameoflife.cells.Shape;
+import org.bitstorm.gameoflife.cells.ShapeCollection;
+import org.bitstorm.gameoflife.eventhandler.*;
 
 import java.awt.Button;
 import java.awt.Choice;
@@ -24,7 +27,7 @@ import java.util.Vector;
  * @author Edwin Martin
  *
  */
-public class GameOfLifeControls extends Panel implements GameControls {
+public class GameOfLifeUserControls extends Panel implements CellGameUserControls {
 	private Label genLabel;
 	private final String genLabelText = "Generations: ";
 	private final String nextLabelText = "Next";
@@ -48,7 +51,7 @@ public class GameOfLifeControls extends Panel implements GameControls {
 	/**
 	 * Contructs the controls.
 	 */
-	public GameOfLifeControls() {
+	public GameOfLifeUserControls() {
 		listeners = new Vector();
 
 		// pulldown menu with shapes
@@ -125,7 +128,7 @@ public class GameOfLifeControls extends Panel implements GameControls {
 	 * @param listener Listener object
 	 */
 	@Override
-	public void addControlsListener(GameControlsListener listener ) {
+	public void addControlsListener(CellGameUserControlsListener listener ) {
 		listeners.addElement( listener );
 	}
 
@@ -134,7 +137,7 @@ public class GameOfLifeControls extends Panel implements GameControls {
 	 * @param listener Listener object
 	 */
 	@Override
-	public void removeControlsListener(GameControlsListener listener ) {
+	public void removeControlsListener(CellGameUserControlsListener listener ) {
 		listeners.removeElement( listener );
 	}
 

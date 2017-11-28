@@ -3,11 +3,15 @@
  * @author Edwin Martin
  */
 
-package org.bitstorm.gameoflife;
+package org.bitstorm.gameoflife.ui;
 
-import org.bitstorm.handler.CellGridCanvasComponentHandler;
-import org.bitstorm.handler.CellGridCanvasMouseHandler;
-import org.bitstorm.handler.CellGridCanvasMouseMotionHandler;
+import org.bitstorm.gameoflife.cells.Cell;
+import org.bitstorm.gameoflife.cells.CellGrid;
+import org.bitstorm.gameoflife.cells.Shape;
+import org.bitstorm.gameoflife.cells.ShapeException;
+import org.bitstorm.gameoflife.eventhandler.CellGridCanvasComponentHandler;
+import org.bitstorm.gameoflife.eventhandler.CellGridCanvasMouseHandler;
+import org.bitstorm.gameoflife.eventhandler.CellGridCanvasMouseMotionHandler;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -37,6 +41,7 @@ public class CellGridCanvas extends Canvas implements CellGridDrawer{
 	private CellGrid cellGrid;
 	private int newCellSize;
 	private Shape newShape;
+
 
 	/**
 	 * Constructs a CellGridCanvas.
@@ -96,6 +101,7 @@ public class CellGridCanvas extends Canvas implements CellGridDrawer{
 	 * @param x x-coordinate
 	 * @param y y-coordinate
 	 */
+	@Override
 	public void saveCellUnderMouse(int x, int y) {
 		try {
 			cellUnderMouse = cellGrid.getCell(x / cellSize, y / cellSize);
@@ -110,6 +116,7 @@ public class CellGridCanvas extends Canvas implements CellGridDrawer{
 	 * @param x x-coordinate
 	 * @param y y-coordinate
 	 */
+	@Override
 	public void draw(int x, int y) {
 		try {
 			cellGrid.setCell(x / cellSize, y / cellSize, !cellUnderMouse );
@@ -140,7 +147,7 @@ public class CellGridCanvas extends Canvas implements CellGridDrawer{
 	public void paint(Graphics g) {
 		// Draw grid on background image, which is faster
 		if (offScreenImageDrawed == null) {
-			Dimension dim = cellGrid.getDimension();
+			Dimension dim = this.getDimension();
 			Dimension d = getSize();
 			offScreenImageDrawed = createImage(d.width, d.height);
 			offScreenGraphicsDrawed = offScreenImageDrawed.getGraphics();
@@ -173,7 +180,7 @@ public class CellGridCanvas extends Canvas implements CellGridDrawer{
 	 * @see java.awt.Component#getPreferredSize()
 	 */
 	public Dimension getPreferredSize() {
-		Dimension dim = cellGrid.getDimension();
+		Dimension dim = this.getDimension();
 		return new Dimension( cellSize * dim.width,	cellSize * dim.height );
 	}
 
@@ -184,6 +191,11 @@ public class CellGridCanvas extends Canvas implements CellGridDrawer{
 	public Dimension getMinimumSize() {
 		return new Dimension( cellSize,	cellSize );
 	}
+
+	public Dimension getDimension(){
+		return new Dimension(this.cellGrid.getCellCols(),this.cellGrid.getCellRows());
+	}
+
 	
 	/**
 	 * Settings to appy after a window-resize.
@@ -212,8 +224,8 @@ public class CellGridCanvas extends Canvas implements CellGridDrawer{
 
 		// get shape properties
 		//shapeGrid = shape.getShape();
-		dimShape =  shape.getDimension();
-		dimGrid =  cellGrid.getDimension();
+		dimShape =  new Dimension(shape.getWidth(), shape.getHeight());
+		dimGrid =  this.getDimension();
 
 		if (dimShape.width > dimGrid.width || dimShape.height > dimGrid.height)
 			throw new ShapeException( "Shape doesn't fit on canvas (grid: "+dimGrid.width+"x"+dimGrid.height+", shape: "+dimShape.width+"x"+dimShape.height+")"); // shape doesn't fit on canvas

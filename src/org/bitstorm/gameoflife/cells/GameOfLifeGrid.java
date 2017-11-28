@@ -4,9 +4,9 @@
  * @author Edwin Martin
  */
 
-package org.bitstorm.gameoflife;
+package org.bitstorm.gameoflife.cells;
 
-//import java.awt.Dimension;
+
 //import java.util.Hashtable;
 
 /**

@@ -3,7 +3,7 @@
  * @author Edwin Martin
  */
 
-package org.bitstorm.gameoflife;
+package org.bitstorm.gameoflife.cells;
 
 /**
  * Exception for shapes (too big, not found...).
