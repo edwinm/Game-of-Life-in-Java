@@ -1,6 +1,6 @@
 /**
  * Interface to Game of Life Grid.
- * The CellGridCanvas can deal with any grid, not only the Game of Life.
+ * The GameOfLifeAWTCellGrid can deal with any grid, not only the Game of Life.
  * Copyright 1996-2004 Edwin Martin <edwin@bitstorm.nl>
  * @author Edwin Martin
  */

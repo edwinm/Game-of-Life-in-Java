@@ -44,7 +44,7 @@ import org.bitstorm.gameoflife.cells.GameOfLifeGrid;
 import org.bitstorm.gameoflife.cells.Shape;
 import org.bitstorm.gameoflife.cells.ShapeCollection;
 import org.bitstorm.gameoflife.cells.ShapeException;
-import org.bitstorm.gameoflife.ui.CellGridCanvas;
+import org.bitstorm.gameoflife.ui.GameOfLifeAWTCellGrid;
 import org.bitstorm.gameoflife.ui.GameOfLifeUserControls;
 import org.bitstorm.util.AboutDialog;
 import org.bitstorm.util.AlertBox;
@@ -88,14 +88,14 @@ public class StandaloneGameOfLife extends GameOfLife {
 		// TODO: casten naar interface
 		// create StandAloneGameOfLifeGrid
 		gameOfLifeGrid = new GameOfLifeGrid(cellCols, cellRows);
-		gridIO = new GameOfLifeGridIO( gameOfLifeGrid );
+		gridIO = new GameOfLifeGridIO( (GameOfLifeGrid) gameOfLifeGrid );
 
 		// create GameOfLifeCanvas
-		gameOfLifeCanvas = new CellGridCanvas(gameOfLifeGrid, cellSize);
+		gameOfLifeCanvas = new GameOfLifeAWTCellGrid(gameOfLifeGrid, cellSize);
 
 		try {
 			// Make GameOfLifeCanvas a drop target
-			DropTarget dt = new DropTarget( gameOfLifeCanvas, DnDConstants.ACTION_COPY_OR_MOVE, new MyDropListener() );
+			DropTarget dt = new DropTarget( (GameOfLifeAWTCellGrid)gameOfLifeCanvas, DnDConstants.ACTION_COPY_OR_MOVE, new MyDropListener() );
 		} catch (NoClassDefFoundError e) {
 			// Ignore. Older Java version don't support dnd
 		}
@@ -114,8 +114,8 @@ public class StandaloneGameOfLife extends GameOfLife {
         canvasContraints.gridx = GridBagConstraints.REMAINDER;
         canvasContraints.gridy = 0;
         canvasContraints.anchor = GridBagConstraints.CENTER;
-        gridbag.setConstraints(gameOfLifeCanvas, canvasContraints);
-        add(gameOfLifeCanvas);
+        gridbag.setConstraints((GameOfLifeAWTCellGrid)gameOfLifeCanvas, canvasContraints);
+        add((GameOfLifeAWTCellGrid)gameOfLifeCanvas);
         GridBagConstraints controlsContraints = new GridBagConstraints();
         canvasContraints.gridx = GridBagConstraints.REMAINDER;
         canvasContraints.gridy = 1;
@@ -361,12 +361,12 @@ public class StandaloneGameOfLife extends GameOfLife {
 					height = frameDim.height + newCellSize*shapeDim.height - cellSize*gridDim.height;
 					// a little kludge to prevent de window from resizing twice
 					// setNewCellSize only has effect at the next resize
-					gameOfLifeCanvas.setAfterWindowResize( shape, newCellSize );
+					((GameOfLifeAWTCellGrid)gameOfLifeCanvas).setAfterWindowResize( shape, newCellSize );
 					// The UI has to be adjusted, too
 					controls.setZoom( GameOfLifeUserControls.SMALL );
 				} else {
 					// Now resize the window (and optionally set the new cellSize)
-					gameOfLifeCanvas.setAfterWindowResize( shape, cellSize );
+					((GameOfLifeAWTCellGrid)gameOfLifeCanvas).setAfterWindowResize( shape, cellSize );
 				}
 				if ( width < 400 )
 					width = 400;
