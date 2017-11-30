@@ -11,8 +11,8 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 
 /**
- * Interface between GameOfLifeCanvas and GameOfLife.
- * This way GameOfLifeCanvas is generic, independent of GameOfLife.
+ * Interface between GameOfLifeCanvas and AWTGameOfLife.
+ * This way GameOfLifeCanvas is generic, independent of AWTGameOfLife.
  * It contains generic methods to operate on a cell grid.
  *
  * @author Edwin Martin

@@ -1,14 +1,15 @@
 package org.bitstorm.gameoflife.eventhandler;
 
+import org.bitstorm.gameoflife.ui.CellGridDrawer;
 import org.bitstorm.gameoflife.ui.GameOfLifeAWTCellGrid;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class CellGridCanvasMouseHandler implements MouseListener {
-	private GameOfLifeAWTCellGrid canvas;
+public class DrawHandler implements MouseListener {
+	private CellGridDrawer canvas;
 	
-	public CellGridCanvasMouseHandler(GameOfLifeAWTCellGrid canvas){
+	public DrawHandler(CellGridDrawer canvas){
 		this.canvas = canvas;
 	}
 	@Override

@@ -33,7 +33,7 @@ import java.awt.GridBagLayout;
  * This is the heart of the program. It initializes everything en put it together.
  * @author Edwin Martin
  */
-public class GameOfLife extends Applet implements CellGame, Runnable{
+public class AWTGameOfLife extends Applet implements CellGame, Runnable{
 	protected CellGridDrawer gameOfLifeCanvas;
 	protected CellGrid gameOfLifeGrid;
 	protected int cellSize;
@@ -135,8 +135,15 @@ public class GameOfLife extends Applet implements CellGame, Runnable{
 			gameThread.start();
 		}
 	}
-
-
+	
+	public CellGridDrawer getGameOfLifeCanvas() {
+		return gameOfLifeCanvas;
+	}
+	
+	public CellGameUserControls getControls() {
+		return controls;
+	}
+	
 	/**
 	 * @see java.applet.Applet#stop()
 	 */
@@ -201,6 +208,7 @@ public class GameOfLife extends Applet implements CellGame, Runnable{
 	/**
 	 * Resets applet (after loading new shape)
 	 */
+	@Override
 	public void reset() {
 		stop(); // might otherwise confuse user
 		((GameOfLifeAWTCellGrid)gameOfLifeCanvas).repaint();
@@ -222,6 +230,9 @@ public class GameOfLife extends Applet implements CellGame, Runnable{
 		controls.setGeneration( gameOfLifeGrid.getGenerations() );
 	}
 	
+	public CellGrid getGameOfLifeGrid(){
+		return this.gameOfLifeGrid;
+	}
 	/**
 	 * Set speed of new generations.
 	 * @param fps generations per second

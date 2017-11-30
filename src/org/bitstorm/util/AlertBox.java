@@ -71,14 +71,14 @@ public class AlertBox extends Dialog {
 		Point p = parent.getLocation();
 		Dimension dim = parent.getSize();
 		setLocation( p.x+dim.width/2-150, p.y+dim.height/2-75 );
-		show();
+		setVisible(true);
 	}
     
 	/**
 	 * Close dialog box.
 	 */
 	private void close() {
-		this.hide();
+		this.setVisible(false);
 		this.dispose();
 	}
 	/**

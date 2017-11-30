@@ -9,9 +9,9 @@ import org.bitstorm.gameoflife.cells.Cell;
 import org.bitstorm.gameoflife.cells.CellGrid;
 import org.bitstorm.gameoflife.cells.Shape;
 import org.bitstorm.gameoflife.cells.ShapeException;
-import org.bitstorm.gameoflife.eventhandler.CellGridCanvasComponentHandler;
-import org.bitstorm.gameoflife.eventhandler.CellGridCanvasMouseHandler;
-import org.bitstorm.gameoflife.eventhandler.CellGridCanvasMouseMotionHandler;
+import org.bitstorm.gameoflife.eventhandler.ResizeHandler;
+import org.bitstorm.gameoflife.eventhandler.DrawHandler;
+import org.bitstorm.gameoflife.eventhandler.DragDrawHandler;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -54,10 +54,10 @@ public class GameOfLifeAWTCellGrid extends Canvas implements CellGridDrawer{
 
 		setBackground(new Color(0x999999));
 		
-		addMouseListener(new CellGridCanvasMouseHandler(this));
+		addMouseListener(new DrawHandler(this));
 
-		addMouseMotionListener(new CellGridCanvasMouseMotionHandler(this));
-		addComponentListener(new CellGridCanvasComponentHandler(this));
+		addMouseMotionListener(new DragDrawHandler(this));
+		addComponentListener(new ResizeHandler(this));
 
 	}
 	
@@ -80,10 +80,9 @@ public class GameOfLifeAWTCellGrid extends Canvas implements CellGridDrawer{
 			cellSize = newCellSize;
 			newCellSize = 0;
 		}
-		Dimension canvasDim = this.size();
 		offScreenImage = null;
 		offScreenImageDrawed = null;
-		cellGrid.resize(canvasDim.width/cellSize, canvasDim.height/cellSize);
+		cellGrid.resize(this.getWidth()/cellSize, this.getHeight()/cellSize);
 		if ( newShape != null ) {
 			try {
 				setShape( newShape );

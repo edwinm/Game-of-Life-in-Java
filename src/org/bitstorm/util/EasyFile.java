@@ -103,7 +103,7 @@ public class EasyFile {
 			if ( filepath == null ) {
 				FileDialog filedialog = new FileDialog( parent, title, FileDialog.LOAD );
 				filedialog.setFile( filename );
-				filedialog.show();
+				filedialog.setVisible(true);
 				if ( filedialog.getFile() != null ) {
 					filename = filedialog.getFile();
 					filepath = filedialog.getDirectory()+filename;
@@ -134,7 +134,7 @@ public class EasyFile {
 			if ( filepath == null ) {
 				FileDialog filedialog = new FileDialog( parent, title, FileDialog.SAVE );
 				filedialog.setFile( filename );
-				filedialog.show();
+				filedialog.setVisible(true);
 				if ( filedialog.getFile() != null ) {
 					filename = filedialog.getFile();
 					filepath = filedialog.getDirectory()+filename;

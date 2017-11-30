@@ -84,14 +84,14 @@ public class AboutDialog extends Dialog {
 		setModal( true );
 		pack();
 		setLocation( posX, posY );
-		show();
+		setVisible(true);
     }
     
     /**
 	 * Close dialog box.
 	 */
 	private void close() {
-        this.hide();
+        this.setVisible(false);
         this.dispose();
     }
 	/**

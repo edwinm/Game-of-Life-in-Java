@@ -61,14 +61,14 @@ public class TextFileDialog extends Dialog {
 		this.pack();
 		this.enableEvents(Event.WINDOW_DESTROY);
 		this.setLocation( posX, posY );
-		this.show();
+		this.setVisible(true);
 	}
 
 	/**
 	 * Close dialog box.
 	 */
 	private void close() {
-		this.hide();
+		this.setVisible(false);
 		this.dispose();
 	}
 

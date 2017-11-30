@@ -15,4 +15,5 @@ public interface CellGame extends CellGameUserControlsListener {
     void setCellSize(int p);
     int getCellSize();
     void alert(String s);
+    void reset();
 }
